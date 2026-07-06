@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Full Page Scraper",
+  "version": "2.0.0",
+  "description": "Scrape a page's HTML, CSS, JavaScript, and images and save them all into a folder you choose - 100% free, runs locally, no accounts or API keys.",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

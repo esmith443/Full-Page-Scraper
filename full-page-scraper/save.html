@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Full Page Scraper - Save</title>
+<style>
+  body {
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #101114;
+    color: #e8e8ea;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+  }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  #pageInfo { color: #9a9ea6; font-size: 13px; margin-bottom: 20px; word-break: break-all; }
+  .checks {
+    background: #1c1e24;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 16px;
+  }
+  .checks label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .note {
+    background: #1c1e24;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #c9cdd3;
+  }
+  .note label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+  button {
+    background: #2b6cff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: default; }
+  button:hover:not(:disabled) { opacity: 0.9; }
+  #log {
+    margin-top: 20px;
+    background: #0b0c0e;
+    border: 1px solid #2a2d34;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    max-height: 420px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+  .ok { color: #7ee787; }
+  .fail { color: #ff7b72; }
+  .info { color: #9a9ea6; }
+  #summary { margin-top: 14px; font-size: 13px; color: #c9cdd3; }
+</style>
+</head>
+<body>
+  <h1>Full Page Scraper</h1>
+  <div id="pageInfo">Loading page reference...</div>
+
+  <div class="checks">
+    <label><input type="checkbox" id="chkHtml" checked> HTML (full page source)</label>
+    <label><input type="checkbox" id="chkCss" checked> CSS (inline + external)</label>
+    <label><input type="checkbox" id="chkJs" checked> JavaScript (inline + external)</label>
+    <label><input type="checkbox" id="chkImg" checked> Images (&lt;img&gt; + CSS backgrounds)</label>
+    <label><input type="checkbox" id="chkFonts" checked> Fonts (woff/woff2/ttf/otf, from CSS)</label>
+    <label><input type="checkbox" id="chkIcons" checked> Favicons / icons / theme</label>
+    <label><input type="checkbox" id="chkMedia" checked> Video &amp; audio sources</label>
+    <label><input type="checkbox" id="chkManifest" checked> Web app manifest</label>
+  </div>
+
+  <div class="note">
+    <label>
+      <input type="checkbox" id="chkRewrite" checked>
+      <span><strong>Rewrite index.html to use the local files</strong> (recommended) - without this, the saved page still points at the live website's URLs and won't render offline.</span>
+    </label>
+    <label style="margin-top:6px">
+      <input type="checkbox" id="chkStripScripts" checked>
+      <span><strong>Freeze the page as a static snapshot</strong> (recommended for apps/dashboards) - removes live &lt;script&gt; tags from index.html so the page can't re-run its code and overwrite what you saw with an error or blank state. Scripts are still saved separately in js/ either way.</span>
+    </label>
+    <label style="margin-top:6px">
+      <input type="checkbox" id="chkContext" checked>
+      <span><strong>Generate context.md for AI agents</strong> - a clean markdown summary (page structure, tech stack, forms, colors/fonts, visible text) instead of making an AI parse raw HTML/CSS/JS.</span>
+    </label>
+  </div>
+
+  <button id="startBtn">Choose Folder &amp; Save Everything</button>
+  <div id="summary"></div>
+  <div id="log"></div>
+
+  <script src="save.js"></script>
+</body>
+</html>
