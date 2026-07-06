@@ -4,6 +4,8 @@ A free Chrome extension that saves a webpage's HTML, CSS, JavaScript, images, fo
 
 No accounts, no API keys, no data ever leaves your machine.
 
+![Extension popup screenshot](images/FPS.png)
+
 ## What it does
 
 - Saves a full local copy of any page: `index.html`, `css/`, `js/`, `images/`, `fonts/`, `icons/`, `media/`
